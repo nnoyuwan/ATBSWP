@@ -26,4 +26,6 @@ for i in range(len(supplies)):
 
 # 4.2.3 多重赋值技巧
 cat = ["fat", "black", "loud"]
-size, color, disposition = cat
+size, color, disposition = cat # 变量的数目和列表的长度必须严格相等， 否则 Python 将给出 ValueError：
+
+
