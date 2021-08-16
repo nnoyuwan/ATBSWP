@@ -18,9 +18,9 @@ with zipfile.ZipFile('lessons.zip') as f:
     for fn in f.namelist():
         extracted_path = Path(f.extract(fn))
         extracted_path.rename(fn.encode('cp437').decode('gbk'))
+
 z_file = zipfile.ZipFile('lessons.zip')
 z_file.namelist()
-
 spamInfo = z_file.getinfo('java╖┤╔Σ.ppt')
 print(spamInfo.file_size)
 
@@ -34,5 +34,16 @@ z_file.close()
 
 # ZipFile 对象的 extract()方法从 ZIP 文件中解压缩单个文件。继续交互式环境中
 # 的例子：
+z_file.extract('java╖┤╔Σ.ppt')
+z_file.extract('java╖┤╔Σ.ppt', 'dest')
+z_file.close()
+# 传递给 extract()的字符串， 必须匹配 namelist()返回的字符串列表中的一个。或
+# 者，你可以向 extract()传递第二个参数， 将文件解压缩到指定的文件夹， 而不是当
+# 前工作目录。如果第二个参数指定的文件夹不存在， Python 就会创建它。
 
 # 9.3.3 创建和添加到 ZIP 文件
+newZip = zipfile.ZipFile('newZip.zip', 'w')
+newZip.write('java─┌▓┐└α.ppt', compress_type=zipfile.ZIP_DEFLATED)
+newZip.write('java═°┬τ▒α│╠.ppt', compress_type=zipfile.ZIP_DEFLATED)
+newZip.namelist()
+newZip.close()
