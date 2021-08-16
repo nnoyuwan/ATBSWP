@@ -5,3 +5,26 @@
 # 而且可能不小心弄错 ZIP 文件的编号。运行一个程序来完成这个烦人的任务会简单得多。
 
 # 第 1 步：弄清楚 ZIP 文件的名称
+import zipfile, os
+
+
+def backToZip(floder):
+    # Backup the entire contents of "floder" into ZIP file
+    floder = os.path.abspath(floder)  # make sure floder is absolute
+
+    # Figure out the filename this code should use based on
+    # what files already exist
+    number = 1
+    while True:
+        # 通过检查 delicious_1.zip 是否存在， 然后检查 delicious_2.zip 是否存在， 继续下
+        # 去， 可以确定 N 应该是什么。
+        zipFilename = os.path.basename(floder) + ' ' + str(number) + '.zip'
+        if not os.path.exists(zipFilename):
+            break
+        number += 1
+    # TODO: Create the ZIP file.
+
+    # TODO: Walk the entire folder tree and compress the files in each folder.
+    print('Done.')
+
+# backupToZip('C:\\delicious')
