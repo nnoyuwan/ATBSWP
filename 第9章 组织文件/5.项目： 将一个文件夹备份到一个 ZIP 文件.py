@@ -8,7 +8,7 @@
 import zipfile, os
 
 
-def backToZip(floder):
+def backupToZip(floder):
     # Backup the entire contents of "floder" into ZIP file
     floder = os.path.abspath(floder)  # make sure floder is absolute
 
@@ -31,14 +31,18 @@ def backToZip(floder):
     # TODO: Walk the entire folder tree and compress the files in each folder.
     for foldername, subfolders, filenames in os.walk(floder):
         print('Adding files in %s...' % (foldername))
+        # print('subfolders %s in %s...' % (subfolders, foldername))
+        # print('filenames %s in %s...' % (filenames, foldername))
+        # print('')
         backupZip.write(foldername)
         for filename in filenames:
             newBase = os.path.basename(floder) + '_'
-            if filename.startwith(newBase) and filename.endwith('.zip'):
+            if filename.startswith(newBase) and filename.endswith('.zip'):
                 continue
             backupZip.write(os.path.join(foldername, filename))
     backupZip.close()
 
     print('Done.')
 
-# backupToZip('C:\\delicious')
+
+backupToZip('C:\\Users\\admin\Documents\\Tencent Files\\509194515\\FileRecv')
