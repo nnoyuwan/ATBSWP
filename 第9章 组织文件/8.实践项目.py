@@ -5,20 +5,20 @@ import os
 import re
 import shutil
 
-print('请输入文件扩展名：')
-ext = input()
-
-print('请输入查找文件夹路径：')
-floder = input()
-
-p = re.compile(ext)
-re_compile = p
-dest = 'C:\\Users\\admin\\PycharmProjects\\ATBSWP\\第9章 组织文件\\选择性拷贝'
-for flodername, subfloders, filenames in os.walk(floder):
-    for filename in filenames:
-        if p.search(filename) is not None:
-            shutil.move(os.path.join(flodername, filename),
-                        os.path.join(dest, filename))
+# print('请输入文件扩展名：')
+# ext = input()
+#
+# print('请输入查找文件夹路径：')
+# floder = input()
+#
+# p = re.compile(ext)
+# re_compile = p
+# dest = 'C:\\Users\\admin\\PycharmProjects\\ATBSWP\\第9章 组织文件\\选择性拷贝'
+# for flodername, subfloders, filenames in os.walk(floder):
+#     for filename in filenames:
+#         if p.search(filename) is not None:
+#             shutil.move(os.path.join(flodername, filename),
+#                         os.path.join(dest, filename))
 
 # 9.8.2 删除不需要的文件
 # 一些不需要的、 巨大的文件或文件夹占据了硬盘的空间， 这并不少见。如果你
@@ -27,15 +27,15 @@ for flodername, subfloders, filenames in os.walk(floder):
 # 编写一个程序， 遍历一个目录树， 查找特别大的文件或文件夹， 比方说， 超过
 # 100MB 的文件 （ 回忆一下，要获得文件的大小，可以使用 os 模块的 os.path.getsize()）。
 # 将这些文件的绝对路径打印到屏幕上。
-print('请输入文件夹路径：')
-floder = input()
-
-for flodername, subfloders, filenames in os.walk(floder):
-    for filename in filenames:
-        filesize = os.path.getsize(os.path.join(flodername, filename)) / 1024 / 1024
-        if filesize > 100:
-            print(filename + ': '
-                  + str(filesize) + "MB")
+# print('请输入文件夹路径：')
+# floder = input()
+#
+# for flodername, subfloders, filenames in os.walk(floder):
+#     for filename in filenames:
+#         filesize = os.path.getsize(os.path.join(flodername, filename)) / 1024 / 1024
+#         if filesize > 100:
+#             print(filename + ': '
+#                   + str(filesize) + "MB")
 
 # 9.8.3 消除缺失的编号
 # 编写一个程序，在一个文件夹中，找到所有带指定前缀的文件， 诸如 spam001.txt,
@@ -45,8 +45,25 @@ for flodername, subfloders, filenames in os.walk(floder):
 # 作为附加的挑战，编写另一个程序，在一些连续编号的文件中，空出一些编号，
 # 以便加入新的文件
 
-re.compile(r'^spam(\d\d\d)$')
-for flodername, subfloders, filenames in os.walk(floder):
-    for filename in filenames:
+print('请输入文件夹路径：')
+floder = input()
 
+p1 = re.compile(r'spam(\d\d\d)')
+p2 = re.compile(r'\d\d\d')
+L = []
+for filename in os.listdir(floder):
+    if os.path.isfile(filename) and p1.search(filename):
+        L.append(filename)
+print(L)
 
+for i in range(len(L)):
+    if i == 0:
+        continue
+    int1 = int(p2.search(L[i]).group())
+    int2 = int(p2.search(L[i - 1]).group())
+    if (int1 - int2) > 1:
+        num = int(p2.search(L[i - 1]).group()) + 1
+        ext = os.path.splitext(os.path.join(floder, L[i]))[1]
+        fn = r'%s%03d%s' % ('spam', num, ext)
+        shutil.move(os.path.join(floder, L[i]), os.path.join(floder, fn))
+        L[i] = fn
