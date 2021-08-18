@@ -4,4 +4,12 @@
 # 前面下载的罗密欧与朱丽叶的文本），你也需要写入二进制数据，而不是文本数据，
 # 目的是为了保存该文本中的“ Unicode 编码”。
 
+import requests
+res = requests.get('http://www.gutenberg.org/cache/epub/1112/pg1112.txt')
+res.raise_for_status()
+playFile = open('RomeoAndJuliet.txt', 'wb')
+for chunk in res.iter_content(100000):
+    playFile.write(chunk)
+
+
 
