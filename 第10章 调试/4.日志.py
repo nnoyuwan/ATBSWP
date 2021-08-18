@@ -154,3 +154,5 @@ logging.basicConfig(filename='myProgramLog.txt',
 # 可能塞满屏幕，让你很难读到程序的输出。将日志信息写入到文件，让屏幕保持干
 # 净，又能保存信息，这样在运行程序后，可以阅读这些信息。可以用任何文件编辑
 # 器打开这个文本文件，诸如 Notepad 或 TextEdit。
+
+
