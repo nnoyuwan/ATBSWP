@@ -1,5 +1,4 @@
-account = '509194515'
-password = '123Jiangyan.'
+
 
 from selenium import webdriver
 
