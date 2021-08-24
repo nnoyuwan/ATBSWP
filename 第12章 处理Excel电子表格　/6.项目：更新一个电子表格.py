@@ -31,4 +31,31 @@
 # Lemon 1.27
 # 你可以像这样编写代码：
 
+# if produceName == 'Celery':
+# cellObj = 1.19
+# if produceName == 'Garlic':
+# cellObj = 3.07
+# if produceName == 'Lemon':
+# cellObj = 1.27
 
+# 这样硬编码产品和更新的价格有点不优雅。如果你需要用不同的价格，或针对
+# 不同的产品，再次更新这个电子表格，就必须修改很多代码。每次修改代码，都有
+# 引入缺陷的风险。
+# 更灵活的解决方案，是将正确的价格信息保存在字典中，在编写代码时，利用
+# 这个数据结构。
+
+import openpyxl
+
+wb = openpyxl.load_workbook('produceSales.xlsx')
+sheet = wb.active
+PRICE_UPDATEs = {'Garlic': 3.07,
+                 'Celery': 1.19,
+                 'Lemon': 1.27
+                 }
+
+for r in range(2, sheet.max_row + 1):
+    pName = sheet.cell(row=r, column=1).value
+    if pName in PRICE_UPDATEs:
+        sheet.cell(row=r, column=2).value = PRICE_UPDATEs[pName]
+
+wb.save('updatedProduceSales.xlsx')
