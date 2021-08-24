@@ -157,3 +157,34 @@ for row_objects in t:
 # B3 Pears
 # C3 14
 # ---END OF ROW---
+
+# 要访问特定行或列的单元格的值，也可以利用 Worksheet 对象的 rows 和 columns
+# 属性。在交互式环境中输入以下代码
+sheet = wb.active
+columns = sheet.columns
+type(columns)  # <class 'generator'>
+l = list(columns)
+# (<Cell 'Sheet1'.A1>, <Cell 'Sheet1'.A2>, <Cell 'Sheet1'.A3>,
+# <Cell 'Sheet1'.A4>, <Cell 'Sheet1'.A5>, <Cell 'Sheet1'.A6>, <Cell 'Sheet1'.A7>)
+print(l[0])
+print(l[1])
+print(l[2])
+
+for cell_o in l[1]:
+    print(cell_o.value)
+
+# Since then the behaviour of .columns has changed a little bit -- I'm too lazy to look up exactly when -- and now it
+# produces a generator instead (a lazy object which doesn't actually do any work unless it's asked to.)
+
+# 12.3.6 工作簿、工作表、单元格
+
+# 作为快速复习，下面是从电子表格文件中读取单元格涉及的所有函数、方法和
+# 数据类型。
+# 1．导入 openpyxl 模块。
+# 2．调用 openpyxl.load_workbook()函数。
+# 3．取得 Workbook 对象。
+# 4．调用 wb.active或 get_sheet_by_name()工作簿方法。
+# 5．取得 Worksheet 对象。
+# 6．使用索引或工作表的 cell()方法，带上 row 和 column 关键字参数。
+# 7．取得 Cell 对象。
+# 8．读取 Cell 对象的 value 属性。
