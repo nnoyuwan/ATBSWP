@@ -59,3 +59,12 @@ for r in range(2, sheet.max_row + 1):
         sheet.cell(row=r, column=2).value = PRICE_UPDATEs[pName]
 
 wb.save('updatedProduceSales.xlsx')
+
+# 第 3 步：类似程序的思想
+# 因为许多办公室职员一直在使用 Excel 电子表格，所以能够自动编辑和写入 Excel
+# 文件的程序，将非常有用。这样的程序可以完成下列任务：
+# • 从一个电子表格读取数据，写入其他电子表格的某些部分。
+# • 从网站、文本文件或剪贴板读取数据，将它写入电子表格。
+# • 自动清理电子表格中的数据。例如，可以利用正则表达式，读取多种格式的电
+# 话号码，将它们转换成单一的标准格式
+
