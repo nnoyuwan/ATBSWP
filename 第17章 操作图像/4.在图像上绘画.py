@@ -47,15 +47,19 @@ draw = ImageDraw.Draw(im)
 # 绘制示例
 # 在交互式环境中输入以下代码：
 
-draw.line([(0, 0), (199, 0), (199, 199), (0, 199), (0, 0)], fill='black')
-draw.rectangle((20, 30, 60, 60), fill='blue')
-draw.ellipse((120, 30, 160, 60), fill='red')
-draw.polygon(((57, 87), (79, 62), (94, 85), (120, 90), (103, 113)), fill='brown')
-for i in range(100, 200, 10):
-    draw.line([(i, 0), (200, i - 100)], fill='green')
-im.save('drawing.png')
+# draw.line([(0, 0), (199, 0), (199, 199), (0, 199), (0, 0)], fill='black')
+# draw.rectangle((20, 30, 60, 60), fill='blue')
+# draw.ellipse((120, 30, 160, 60), fill='red')
+# draw.polygon(((57, 87), (79, 62), (94, 85), (120, 90), (103, 113)), fill='brown')
+# for i in range(100, 200, 10):
+#     draw.line([(i, 0), (200, i - 100)], fill='green')
+# im.save('drawing.png')
+
 
 # 17.4.2 绘制文本
+from PIL import Image, ImageDraw, ImageFont
+import os
+
 # ImageDraw 对象还有 text()方法，用于在图像上绘制文本。 text()方法有 4 个参
 # 数： xy、 text、 fill 和 font。
 # • xy 参数是两个整数的元组，指定文本区域的左上角。
@@ -63,14 +67,17 @@ im.save('drawing.png')
 # • 可选参数 fill 是文本的颜色。
 # • 可选参数 font 是一个 ImageFont 对象，用于设置文本的字体和大小。
 
+draw.text((20, 150), 'Hello', fill='purple')
+fontsFloder = 'C:\\Windows\\Fonts'
+arialFont = ImageFont.truetype(os.path.join(fontsFloder, 'arial.ttf'), 32)
+draw.text((100, 150), 'Howdy', fill='gray', font=arialFont)
+im.save('text.png')
 
 # 因为通常很难预先知道一块文本在给定的字体下的大小，所以 ImageDraw 模块
 # 也提供了 textsize()方法。它的第一个参数是要测量的文本字符串，第二个参数是可
 # 选的 ImageFont 对象。 textsize()方法返回一个两整数元组，表示如果以指定的字体
 # 写入图像，文本的宽度和高度。可以利用这个宽度和高度，帮助你精确计算文本放
 # 在图像上的位置。
-
-from PIL import ImageFont
 
 # 既然已经导入 Pillow 的 ImageFont 模块，就可以调用 ImageFont.truetype()函数，它
 # 有两个参数。
@@ -86,10 +93,3 @@ from PIL import ImageFont
 #
 # ImageFont.truetype()的第二个参数是一个整数，表示字体大小的点数（而不是像
 # 素）。请记住， Pillow 创建的 PNG 图像默认是每英寸 72 像素，一点是 1/72 英寸。
-
-from PIL import Image, ImageDraw, ImageFont
-import os
-
-
-
-

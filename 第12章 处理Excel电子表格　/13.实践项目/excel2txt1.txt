@@ -1,0 +1,6 @@
+Traceback (most recent call last):
+
+  File "<input>", line 4, in <module>
+
+Exception: This is the error message.
+
