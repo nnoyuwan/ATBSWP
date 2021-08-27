@@ -60,6 +60,7 @@ draw = ImageDraw.Draw(im)
 from PIL import Image, ImageDraw, ImageFont
 import os
 
+os.chdir('C:\\Users\\admin\\PycharmProjects\\ATBSWP\\第17章 操作图像')
 # ImageDraw 对象还有 text()方法，用于在图像上绘制文本。 text()方法有 4 个参
 # 数： xy、 text、 fill 和 font。
 # • xy 参数是两个整数的元组，指定文本区域的左上角。
@@ -69,9 +70,6 @@ import os
 
 draw.text((20, 150), 'Hello', fill='purple')
 fontsFloder = 'C:\\Windows\\Fonts'
-arialFont = ImageFont.truetype(os.path.join(fontsFloder, 'arial.ttf'), 32)
-draw.text((100, 150), 'Howdy', fill='gray', font=arialFont)
-im.save('text.png')
 
 # 因为通常很难预先知道一块文本在给定的字体下的大小，所以 ImageDraw 模块
 # 也提供了 textsize()方法。它的第一个参数是要测量的文本字符串，第二个参数是可
@@ -93,3 +91,7 @@ im.save('text.png')
 #
 # ImageFont.truetype()的第二个参数是一个整数，表示字体大小的点数（而不是像
 # 素）。请记住， Pillow 创建的 PNG 图像默认是每英寸 72 像素，一点是 1/72 英寸。
+
+arialFont = ImageFont.truetype(os.path.join(fontsFloder, 'arial.ttf'), 32)
+draw.text((100, 150), 'Howdy', fill='gray', font=arialFont)
+im.save('text.png')

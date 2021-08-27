@@ -42,7 +42,6 @@ LOGO_FILENAME = 'C:\\Users\\admin\\PycharmProjects\\ATBSWP\\第17章 操作图�
 logoIm = Image.open(LOGO_FILENAME)
 assert isinstance(logoIm, Image.Image)
 logoIm = logoIm.resize((50, 50))
-logoIm.save('catlogo_50.png')
 
 assert isinstance(logoIm, Image.Image)
 logoWidth, logoHeight = logoIm.size
@@ -52,7 +51,20 @@ print(logoIm.size)
 os.makedirs('withLogo', exist_ok=True)
 for fn in os.listdir('C:\\Users\\admin\PycharmProjects\\ATBSWP\\第17章 操作图像'):
     print(fn)
-    if not (fn.endswith('png') or fn.endswith('jpg')):
+
+    # 另一个小问题是，只有文件扩展名小写时，程序才修改 PNG 和 JPEG 文件。例
+    # 如，它会处理 zophie.png，但不处理 zophie.PNG。修改代码，让文件扩展名检查不
+    # 区分大小写。
+    # 最后，添加到右下角的徽标本来只是一个小标记，但如果该图像与徽标本身差
+    # 不多大，结果将类似于图 17-16。修改 resizeAndAddLogo.py，使得图像必须至少是徽
+    # 标的两倍的宽度和高度，然后才粘贴徽标。否则，它应该跳过添加徽标
+
+    if not (
+            fn.endswith('png') or
+            fn.endswith('jpg') or
+            fn.endswith('JPG') or
+            fn.endswith('PNG')
+    ):
         continue
     im = Image.open(fn)
     assert isinstance(im, Image.Image)
