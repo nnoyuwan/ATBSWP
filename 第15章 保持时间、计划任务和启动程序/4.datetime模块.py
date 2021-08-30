@@ -86,6 +86,7 @@ print('Done!')
 
 
 # 15.4.3 将 datetime 对象转换为字符串
+
 # Unix 纪元时间戳和 datetime 对象对人类来说都不是很友好可读。利用 strftime()方
 # 法，可以将 datetime 对象显示为字符串。（ strftime()函数名中的 f 表示格式， format）。
 # 该的 strftime()方法使用的指令类似于 Python 的字符串格式化。表 15-1 列出了完
@@ -111,5 +112,18 @@ print('Done!')
 
 oct21st = datetime.datetime(2015, 10, 21, 16, 29, 0)
 oct21st.strftime('%Y/%m/%d %H:%M:%S')  # '2015/10/21 16:29:00'
-oct21st.strftime('%I:%M %p') # '04:29 PM'
-oct21st.strftime("%B of '%y") # "October of '15"
+oct21st.strftime('%I:%M %p')  # '04:29 PM'
+oct21st.strftime("%B of '%y")  # "October of '15"
+
+# 15.4.4 将字符串转换成 datetime 对象
+datetime.datetime.strptime('October 21, 2015', '%B %d, %Y')  # datetime.datetime(2015, 10, 21, 0, 0)
+datetime.datetime.strptime('2015/10/21 16:29:00', '%Y/%m/%d %H:%M:%S')  # datetime.datetime(2015, 10, 21, 16, 29)
+datetime.datetime.strptime("October of '15", "%B of '%y")  # datetime.datetime(2015, 10, 1, 0, 0)
+datetime.datetime.strptime("November of '63", "%B of '%y")  # datetime.datetime(2063, 11, 1, 0, 0)
+
+# 要从字符串'October 21, 2015'取得一个 datetime 对象，将'October 21, 2015'作为
+# 第一个参数传递给 strptime()，并将对应于'October 21, 2015' 的定制格式字符串作为
+# 第二个参数。带有日期信息的字符串必须准确匹配定制的格式字符串，否则 Python
+# 将抛出 ValueError 异常
+
+
