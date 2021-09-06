@@ -30,6 +30,8 @@
 import time
 
 # Display the program's instructions.
+import pyperclip
+
 print('Press ENTER to begin. Afterwards, '
       'press ENTER to "click" the stopwatch.'
       'Press Ctrl-C to quit.')
@@ -47,18 +49,21 @@ lapNum = 1
 # 现在，让我们编码开始每一个新的单圈，计算前一圈花了多少时间，并计算自
 # 启动秒表后经过的总时间。我们将显示的单圈时间和总时间，为每个新的单圈增加
 # 圈计数。将下面的代码添加到程序中：
-
+L = []
 try:
     while True:
         input()
         lapTime = round(time.time() - lastTime, 2)
         totalTime = round(time.time() - startTime, 2)
-        print('Lap #%s: %s (%s)' % (lapNum, totalTime, lapTime), end='')
+        result = 'Lap #%s: %s (%s)' % (str(lapNum).rjust(3), str(totalTime).rjust(6), str(lapTime).rjust(5))
+        L.append(result)
+        print(result, end='')
         lapNum += 1
         lastTime = time.time()
 except KeyboardInterrupt:
     # Handle the Ctrl-C exception to keep its error message from displaying.
     print('\nDone.')
+    pyperclip.copy('\n'.join(L))
     pass
 
 # 在行，我们打印出圈数，消耗的总时间和单圈时间。由于用户为 input()调用

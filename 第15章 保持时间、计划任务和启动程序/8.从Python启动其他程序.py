@@ -68,7 +68,7 @@ subprocess.Popen(["D:\\Program Files\\JetBrains\\PyCharm 2021.1.3\\bin\\pycharm6
 # 15.8.5 用默认的应用程序打开文件
 
 # 每个操作系统都有一个程序，其行为等价于双击文档文件来打开它。在 Windows
-# 上，这是 start 程序。
+# 上，这是 start 程序。在 OS X 上，这是 open 程序。在 Ubuntu Linux 上，这是 see 程序。
 
 fileObj = open('hello.txt', 'w')
 fileObj.write('Hello world!')
